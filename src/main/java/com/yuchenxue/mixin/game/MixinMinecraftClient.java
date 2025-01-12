@@ -1,6 +1,6 @@
 package com.yuchenxue.mixin.game;
 
-import com.yuchenxue.Client;
+import com.yuchenxue.Stay;
 import com.yuchenxue.event.EventManager;
 import com.yuchenxue.event.events.ClientShutdownEvent;
 import com.yuchenxue.event.events.ClientStartEvent;
@@ -21,7 +21,7 @@ public class MixinMinecraftClient {
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;onResolutionChanged()V"))
     private void startClient(CallbackInfo info) {
         EventManager.INSTANCE.callEvent(new ClientStartEvent());
-        Client.INSTANCE.startClient();
+        Stay.INSTANCE.startClient();
     }
 
     @Inject(method = "stop", at = @At(value = "HEAD"))
