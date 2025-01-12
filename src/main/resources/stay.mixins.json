@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.yuchenxue.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "game.MixinMinecraftClient"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "entity.MixinClientPlayerEntity",
+    "game.MixinKeyboard"
+  ]
+}
