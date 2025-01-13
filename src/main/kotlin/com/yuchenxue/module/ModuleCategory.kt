@@ -9,6 +9,8 @@ enum class ModuleCategory(val readableName: String) {
     COMBAT("Combat"),
     MOVEMENT("Movement"),
     PLAYER("Player"),
+    RENDER("Render"),
+
     UNKNOWN("Unknown");
     ;
 
