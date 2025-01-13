@@ -8,14 +8,14 @@ import kotlin.reflect.KProperty
  * @date 2025/01/13 - 10:22
  */
 
-@Target(AnnotationTarget.FIELD)
+@Target(AnnotationTarget.PROPERTY)
 annotation class IntValue(
     val name: String,
     val min: Int = 0,
     val max: Int = 20
 )
 
-@Target(AnnotationTarget.FIELD)
+@Target(AnnotationTarget.PROPERTY)
 annotation class FloatValue(
     val name: String,
     val min: Float = 0f,
