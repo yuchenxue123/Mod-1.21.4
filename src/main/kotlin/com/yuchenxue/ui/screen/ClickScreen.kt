@@ -1,6 +1,7 @@
 package com.yuchenxue.ui.screen
 
 import com.yuchenxue.module.ModuleCategory
+import com.yuchenxue.ui.api.FontAccessor
 import com.yuchenxue.ui.screen.clickgui.CategoryElement
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
@@ -11,7 +12,7 @@ import net.minecraft.text.Text
  * @date 2025/01/13 - 11:08
  */
 
-object ClickScreen : Screen(Text.empty()) {
+object ClickScreen : Screen(Text.empty()), FontAccessor {
 
     val categoryElements = mutableListOf<CategoryElement>()
 
@@ -25,9 +26,8 @@ object ClickScreen : Screen(Text.empty()) {
         }
     }
 
-    override fun render(context: DrawContext?, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         super.render(context, mouseX, mouseY, delta)
-        if (context == null) return
 
         categoryElements.forEach { it.render(context, mouseX, mouseY, delta) }
     }

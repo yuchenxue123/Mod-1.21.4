@@ -1,7 +1,7 @@
 package com.yuchenxue.ui.screen.clickgui
 
 import com.yuchenxue.module.ClientModule
-import com.yuchenxue.ui.api.Element
+import com.yuchenxue.ui.api.ScreenElement
 import com.yuchenxue.utils.extensions.fillRect
 import net.minecraft.client.gui.DrawContext
 import java.awt.Color
@@ -14,7 +14,7 @@ import java.awt.Color
 class ModuleElement(
     val module: ClientModule,
     val parent: CategoryElement
-) : Element {
+) : ScreenElement {
 
     var offset = 0
 
@@ -24,9 +24,7 @@ class ModuleElement(
     val width = parent.width
     val height = parent.height
 
-    override fun render(context: DrawContext?, mouseX: Int, mouseY: Int, delta: Float) {
-        if (context == null) return
-
+    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         context.fillRect(renderX, renderY, width, height, Color(60,60,60,255).rgb)
         context.drawTextWithShadow(mc.textRenderer, module.name, renderX, renderY, Color.WHITE.rgb)
     }

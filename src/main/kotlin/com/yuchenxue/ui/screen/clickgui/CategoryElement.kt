@@ -1,7 +1,7 @@
 package com.yuchenxue.ui.screen.clickgui
 
 import com.yuchenxue.module.ModuleCategory
-import com.yuchenxue.ui.api.Element
+import com.yuchenxue.ui.api.ScreenElement
 import com.yuchenxue.utils.extensions.fillRect
 import net.minecraft.client.gui.DrawContext
 import java.awt.Color
@@ -11,7 +11,7 @@ import java.awt.Color
  * @date 2025/01/13 - 13:44
  */
 
-class CategoryElement : Element {
+class CategoryElement : ScreenElement {
 
     var category: ModuleCategory? = null
 
@@ -33,7 +33,7 @@ class CategoryElement : Element {
     val width = 100
     val height = 18
 
-    override fun render(context: DrawContext?, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         if (context == null) return
 
         context.fillRect(renderX, renderY, width, height, Color(40,40,40,255).rgb)
@@ -45,7 +45,6 @@ class CategoryElement : Element {
             renderY + (height - mc.textRenderer.fontHeight) / 2,
             Color.WHITE.rgb
         )
-
         moduleElements.forEach { it.render(context, mouseX, mouseY, delta) }
     }
 

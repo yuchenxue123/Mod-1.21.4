@@ -1,6 +1,5 @@
 package com.yuchenxue.ui.api
 
-import com.yuchenxue.utils.client.Accessor
 import net.minecraft.client.gui.DrawContext
 
 /**
@@ -8,10 +7,10 @@ import net.minecraft.client.gui.DrawContext
  * @date 2025/01/13 - 13:45
  */
 
-interface Element : Accessor {
-    fun render(context: DrawContext?, mouseX: Int, mouseY: Int, delta: Float)
+interface ScreenElement : DrawableElement {
+    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float)
 
-    fun mouseClicked(mouseX: Double, mouseY: Double, button: Int){}
+    fun mouseClicked(mouseX: Double, mouseY: Double, button: Int) {}
 
     fun mouseReleased(mouseX: Double, mouseY: Double, button: Int) {}
 
