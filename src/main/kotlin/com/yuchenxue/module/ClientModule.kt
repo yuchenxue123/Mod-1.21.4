@@ -2,7 +2,6 @@ package com.yuchenxue.module
 
 import com.yuchenxue.event.Listenable
 import com.yuchenxue.utils.client.Accessor
-import com.yuchenxue.utils.client.ModuleInfo
 import net.minecraft.text.Text
 import org.lwjgl.glfw.GLFW
 
@@ -11,11 +10,13 @@ import org.lwjgl.glfw.GLFW
  * @date 2025/01/12 - 19:09
  */
 
-open class ClientModule : Listenable, Accessor {
-    val name = this::class.java.getAnnotation(ModuleInfo::class.java)?.name ?: "UNKNOWN"
-    val category = this::class.java.getAnnotation(ModuleInfo::class.java)?.category ?: ModuleCategory.UNKNOWN
-    val description = this::class.java.getAnnotation(ModuleInfo::class.java)?.description ?: ""
-    var key = this::class.java.getAnnotation(ModuleInfo::class.java)?.key ?: GLFW.GLFW_KEY_UNKNOWN
+open class ClientModule(
+    val name: String,
+    val category: ModuleCategory,
+    val description: String = "None.",
+    var key: Int = GLFW.GLFW_KEY_UNKNOWN,
+    val canEnable: Boolean = true,
+) : Listenable, Accessor {
 
     var state = false
         set(value) {

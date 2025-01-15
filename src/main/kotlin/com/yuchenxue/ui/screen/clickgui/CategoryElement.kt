@@ -30,22 +30,61 @@ class CategoryElement : ScreenElement {
     var renderX: Int = 20
     var renderY: Int = 20
 
-    val width = 100
-    val height = 18
+    val width = 120
+    val height = fontHeight + 8
+
+    private var open = false
+    private var dragging = false
+
+    // drag data
+    private var dragX = 0
+    private var dragY = 0
 
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
-        if (context == null) return
+
+        if (dragging) {
+            renderX = mouseX - dragX
+            renderY = mouseY - dragY
+        }
 
         context.fillRect(renderX, renderY, width, height, Color(40,40,40,255).rgb)
-        val text = category?.name ?: "NULL"
+        val text = category?.renderName ?: "NULL"
         context.drawTextWithShadow(
-            mc.textRenderer,
+            font,
             text,
             renderX + (width - mc.textRenderer.getWidth(text)) / 2,
             renderY + (height - mc.textRenderer.fontHeight) / 2,
             Color.WHITE.rgb
         )
-        moduleElements.forEach { it.render(context, mouseX, mouseY, delta) }
+        if (open) {
+            moduleElements.forEach { it.render(context, mouseX, mouseY, delta) }
+        }
+    }
+
+    override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int) {
+        val hovered = isHovered(renderX, renderY, width, height, mouseX, mouseY)
+        if (hovered) {
+            if (button == 0) {
+                dragging = true
+                dragX = mouseX.toInt() - renderX
+                dragY = mouseY.toInt() - renderY
+            }
+            if (button == 1) {
+                open = !open
+            }
+        }
+
+        if (open) {
+            moduleElements.forEach { it.mouseClicked(mouseX, mouseY, button) }
+        }
+    }
+
+    override fun mouseReleased(mouseX: Double, mouseY: Double, button: Int) {
+        dragging = false
+
+        if (open) {
+            moduleElements.forEach { it.mouseReleased(mouseX, mouseY, button) }
+        }
     }
 
     fun refreshModuleElements() {

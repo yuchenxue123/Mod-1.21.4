@@ -34,10 +34,14 @@ object ClickScreen : Screen(Text.empty()), FontAccessor {
 
     override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int): Boolean {
 
+        categoryElements.forEach { it.mouseClicked(mouseX, mouseY, button) }
+
         return super.mouseClicked(mouseX, mouseY, button)
     }
 
     override fun mouseReleased(mouseX: Double, mouseY: Double, button: Int): Boolean {
+
+        categoryElements.forEach { it.mouseReleased(mouseX, mouseY, button) }
 
         return super.mouseReleased(mouseX, mouseY, button)
     }

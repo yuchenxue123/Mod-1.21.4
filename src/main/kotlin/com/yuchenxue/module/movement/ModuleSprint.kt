@@ -4,7 +4,6 @@ import com.yuchenxue.event.events.PlayerTickEvent
 import com.yuchenxue.event.handle
 import com.yuchenxue.module.ClientModule
 import com.yuchenxue.module.ModuleCategory
-import com.yuchenxue.utils.client.ModuleInfo
 import com.yuchenxue.utils.value.BoolValue
 import net.minecraft.client.MinecraftClient
 import org.lwjgl.glfw.GLFW
@@ -14,8 +13,12 @@ import org.lwjgl.glfw.GLFW
  * @date 2025/01/12 - 20:24
  */
 
-@ModuleInfo("Sprint", ModuleCategory.MOVEMENT, "Auto sprint.", GLFW.GLFW_KEY_V)
-object ModuleSprint : ClientModule() {
+object ModuleSprint : ClientModule(
+    "Sprint",
+    ModuleCategory.MOVEMENT,
+    "Auto sprint.",
+    GLFW.GLFW_KEY_V
+) {
 
     @BoolValue("All Direction")
     private var allDirection = false

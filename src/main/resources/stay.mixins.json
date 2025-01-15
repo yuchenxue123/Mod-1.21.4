@@ -3,6 +3,7 @@
   "package": "com.yuchenxue.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "game.MixinClientConnection",
     "game.MixinMinecraftClient"
   ],
   "injectors": {

@@ -24,8 +24,34 @@ class ModuleElement(
     val width = parent.width
     val height = parent.height
 
+    private var open = false
+        set(value) {
+            field = value
+        }
+
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
-        context.fillRect(renderX, renderY, width, height, Color(60,60,60,255).rgb)
-        context.drawTextWithShadow(mc.textRenderer, module.name, renderX, renderY, Color.WHITE.rgb)
+        val color = if (module.state) Color(120, 120, 120, 255).rgb else Color(60,60,60,255).rgb
+        context.fillRect(renderX, renderY, width, height, color)
+
+        val text = module.name
+        context.drawTextWithShadow(
+            font,
+            text,
+            renderX + (width - font.getWidth(text)) / 2,
+            renderY + (height - fontHeight) / 2,
+            Color.WHITE.rgb
+        )
+    }
+
+    override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int) {
+        val hovered = isHovered(renderX, renderY, width, height, mouseX, mouseY)
+        if (hovered) {
+            if (button == 0 && module.canEnable) {
+                module.toggle()
+            }
+            if (button == 1) {
+                open = !open
+            }
+        }
     }
 }

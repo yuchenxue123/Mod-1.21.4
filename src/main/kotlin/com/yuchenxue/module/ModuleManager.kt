@@ -3,8 +3,10 @@ package com.yuchenxue.module
 import com.yuchenxue.event.Listenable
 import com.yuchenxue.event.events.KeyBoardEvent
 import com.yuchenxue.event.handle
+import com.yuchenxue.module.combat.ModuleVelocity
 import com.yuchenxue.module.movement.ModuleSprint
 import com.yuchenxue.module.render.ModuleClickGui
+import com.yuchenxue.module.render.ModuleFullBright
 import com.yuchenxue.utils.client.Accessor
 import net.minecraft.client.util.InputUtil
 import org.lwjgl.glfw.GLFW
@@ -20,9 +22,13 @@ object ModuleManager : Listenable, Accessor {
 
     init {
         registerModule(
+            // combat
+            ModuleVelocity,
+            // move
             ModuleSprint,
-
-            ModuleClickGui
+            // render
+            ModuleClickGui,
+            ModuleFullBright
         )
     }
 

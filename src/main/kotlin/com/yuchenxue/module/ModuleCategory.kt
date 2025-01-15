@@ -5,13 +5,11 @@ package com.yuchenxue.module
  * @date 2025/01/12 - 19:10
  */
 
-enum class ModuleCategory(val readableName: String) {
+enum class ModuleCategory(val renderName: String) {
     COMBAT("Combat"),
     MOVEMENT("Movement"),
     PLAYER("Player"),
     RENDER("Render"),
-
-    UNKNOWN("Unknown");
     ;
 
     fun getCategoryModules() = ModuleManager.modules.filter { it.category == this }.sortedBy { it.name }
