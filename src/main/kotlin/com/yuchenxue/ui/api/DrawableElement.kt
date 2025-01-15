@@ -9,4 +9,8 @@ import net.minecraft.client.gui.DrawContext
 
 interface DrawableElement : FontAccessor {
     fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float)
+
+    fun isHovered(renderX: Int, renderY: Int, width: Int, height: Int, mouseX: Double, mouseY: Double): Boolean {
+        return mouseX >= renderX && mouseX <= renderX + width && mouseY >= renderY && mouseY <= renderY + height
+    }
 }
