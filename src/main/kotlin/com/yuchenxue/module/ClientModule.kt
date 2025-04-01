@@ -2,6 +2,7 @@ package com.yuchenxue.module
 
 import com.yuchenxue.event.Listenable
 import com.yuchenxue.utils.client.Accessor
+import com.yuchenxue.value.config.Configurable
 import net.minecraft.text.Text
 import org.lwjgl.glfw.GLFW
 
@@ -11,12 +12,12 @@ import org.lwjgl.glfw.GLFW
  */
 
 open class ClientModule(
-    val name: String,
+    override val name: String,
     val category: ModuleCategory,
     val description: String = "None.",
     var key: Int = GLFW.GLFW_KEY_UNKNOWN,
     val canEnable: Boolean = true,
-) : Listenable, Accessor {
+) : Configurable(name), Listenable, Accessor {
 
     var state = false
         set(value) {

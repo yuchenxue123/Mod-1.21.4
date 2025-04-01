@@ -11,12 +11,14 @@ object CommandManager {
     val commands = mutableListOf<Command>()
 
     init {
-        addCommand(
+        val defaults = arrayOf(
             BindCommand
         )
+
+        defaults.forEach(this::add)
     }
 
-    fun addCommand(vararg command: Command) {
-        commands.addAll(command)
+    private fun add(command: Command) {
+        commands.add(command)
     }
 }
