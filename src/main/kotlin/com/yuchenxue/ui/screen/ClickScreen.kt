@@ -2,7 +2,7 @@ package com.yuchenxue.ui.screen
 
 import com.yuchenxue.module.ModuleCategory
 import com.yuchenxue.ui.api.FontAccessor
-import com.yuchenxue.ui.screen.clickgui.CategoryElement
+import com.yuchenxue.ui.screen.clickgui.CategoryScreen
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.text.Text
@@ -14,13 +14,13 @@ import net.minecraft.text.Text
 
 object ClickScreen : Screen(Text.empty()), FontAccessor {
 
-    val categoryElements = mutableListOf<CategoryElement>()
+    val categoryElements = mutableListOf<CategoryScreen>()
 
     init {
         val y = 20
         var x = 10
         ModuleCategory.entries.forEach { category ->
-            val element = CategoryElement.create().setCategory(category).setPosition(x, y)
+            val element = CategoryScreen.of(category).setPosition(x, y)
             categoryElements.add(element)
             x += 2 + element.width
         }

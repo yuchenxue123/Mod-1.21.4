@@ -11,21 +11,21 @@ import java.awt.Color
  * @date 2025/01/13 - 13:44
  */
 
-class CategoryElement : ScreenElement {
+class CategoryScreen : ScreenElement {
 
-    var category: ModuleCategory? = null
+    private var category: ModuleCategory? = null
 
     companion object {
-        fun create(): CategoryElement {
-            return CategoryElement()
+        fun create(): CategoryScreen {
+            return CategoryScreen()
         }
 
-        fun of(category: ModuleCategory): CategoryElement {
+        fun of(category: ModuleCategory): CategoryScreen {
             return create().setCategory(category)
         }
     }
 
-    val moduleElements = mutableListOf<ModuleElement>()
+    val moduleButtons = mutableListOf<ModuleButton>()
 
     var renderX: Int = 20
     var renderY: Int = 20
@@ -57,7 +57,7 @@ class CategoryElement : ScreenElement {
             Color.WHITE.rgb
         )
         if (open) {
-            moduleElements.forEach { it.render(context, mouseX, mouseY, delta) }
+            moduleButtons.forEach { it.render(context, mouseX, mouseY, delta) }
         }
     }
 
@@ -75,7 +75,7 @@ class CategoryElement : ScreenElement {
         }
 
         if (open) {
-            moduleElements.forEach { it.mouseClicked(mouseX, mouseY, button) }
+            moduleButtons.forEach { it.mouseClicked(mouseX, mouseY, button) }
         }
     }
 
@@ -83,13 +83,13 @@ class CategoryElement : ScreenElement {
         dragging = false
 
         if (open) {
-            moduleElements.forEach { it.mouseReleased(mouseX, mouseY, button) }
+            moduleButtons.forEach { it.mouseReleased(mouseX, mouseY, button) }
         }
     }
 
     fun refreshModuleElements() {
         var offset = height
-        moduleElements.forEach {
+        moduleButtons.forEach {
             it.offset = offset
             offset += height
         }
@@ -100,21 +100,21 @@ class CategoryElement : ScreenElement {
             return
         }
 
-        moduleElements.clear()
-        category!!.getCategoryModules().forEach { module ->
-            moduleElements.add(ModuleElement(module, this))
+        moduleButtons.clear()
+        category!!.modules.forEach { module ->
+            moduleButtons.add(ModuleButton(module, this))
         }
 
         refreshModuleElements()
     }
 
-    fun setCategory(category: ModuleCategory): CategoryElement {
+    fun setCategory(category: ModuleCategory): CategoryScreen {
         this.category = category
         buildModuleElements()
         return this
     }
 
-    fun setPosition(x: Int, y: Int): CategoryElement {
+    fun setPosition(x: Int, y: Int): CategoryScreen {
         this.renderX = x
         this.renderY = y
         return this

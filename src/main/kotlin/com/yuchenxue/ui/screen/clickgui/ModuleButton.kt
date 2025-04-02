@@ -11,15 +11,17 @@ import java.awt.Color
  * @date 2025/01/13 - 13:52
  */
 
-class ModuleElement(
+class ModuleButton(
     val module: ClientModule,
-    val parent: CategoryElement
+    val parent: CategoryScreen
 ) : ScreenElement {
 
     var offset = 0
 
-    private val renderX get() = parent.renderX
-    private val renderY get() = parent.renderY + offset
+    private val renderX
+        get() = parent.renderX
+    private val renderY
+        get() = parent.renderY + offset
 
     val width = parent.width
     val height = parent.height

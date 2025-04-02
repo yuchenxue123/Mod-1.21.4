@@ -12,5 +12,6 @@ enum class ModuleCategory(val renderName: String) {
     RENDER("Render"),
     ;
 
-    fun getCategoryModules() = ModuleManager.modules.filter { it.category == this }.sortedBy { it.name }
+    val modules: List<ClientModule>
+        get() = ModuleManager.modules.filter { it.category == this }.sortedBy { it.name }
 }
